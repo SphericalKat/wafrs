@@ -60,7 +60,7 @@ router.get('/:id', async ({ req, res, env }) => {
 
     try {
         const url = new URL(result.content)
-        res.raw = Response.redirect(url.origin, 302);
+        res.raw = Response.redirect(url.toString(), 302);
         return;
     } catch (e) {
         res.headers.set("Content-Type", "text/html");
