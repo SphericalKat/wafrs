@@ -2,7 +2,6 @@ name = "wafrs"
 main = "src/index.ts"
 compatibility_date = "2023-02-14"
 route = "waf.rs/*"
-node_compat = true
 
 kv_namespaces = [
     { binding = "wafrs", id = "ae0ed606ec2544859474a2fe6e97aebc", preview_id = "ae0ed606ec2544859474a2fe6e97aebc" }

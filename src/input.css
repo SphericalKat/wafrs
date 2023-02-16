@@ -7,3 +7,7 @@ textarea::placeholder {
     text-shadow: 0 0 2px #393a33, 0 0 8px #f39f0575, 0 0 2px #f39f0575;
     color: #f4eee4;
 }
+
+* {
+    font-family: JetBrains Mono, Monaco, Consolas, Ubuntu Mono, monospace !important;;
+}
