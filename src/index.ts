@@ -1,7 +1,9 @@
 import Mustache from 'mustache';
+import queryString from 'query-string';
 import { Router } from '@tsndr/cloudflare-worker-router'
-import { getAssetFromKV } from '@cloudflare/kv-asset-handler';
+import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler';
 import manifestJSON from '__STATIC_CONTENT_MANIFEST';
+import PhoneticKeyGenerator from './generators';
 const assetManifest = JSON.parse(manifestJSON);
 
 export interface Env {
@@ -11,6 +13,24 @@ export interface Env {
 }
 
 const router = new Router<Env>()
+
+const customKeyModifier = (id: string) => (request: Request) => {
+    let url = request.url
+    //custom key mapping optional
+    url = url.replace(`${id}`, 'paste.html');
+    return mapRequestToAsset(new Request(url, request))
+}
+
+router.post('/', async ({ req, res, env }) => {
+    const { content } = queryString.parse(req.body);
+    const id = PhoneticKeyGenerator.createKey(12);
+    const resp = await env.DB.prepare("INSERT INTO pastes(id, content) VALUES(?, ?)")
+        .bind(id, content)
+        .run();
+
+    res.raw = Response.redirect(`${new URL(req.url).origin}/${id}`, 302)
+    return;
+});
 
 
 router.get('/:id', async ({ req, res, env }) => {
@@ -26,15 +46,19 @@ router.get('/:id', async ({ req, res, env }) => {
     }
 
     const result: { content: string, user_id: number } = resp.results!.at(0) as { content: string, user_id: number };
+    const asset = await getAssetFromKV(req.raw, {
+        ASSET_NAMESPACE: env.__STATIC_CONTENT,
+        ASSET_MANIFEST: assetManifest,
+        mapRequestToAsset: customKeyModifier(id),
+    })
 
     try {
         const url = new URL(result.content)
         res.raw = Response.redirect(url.origin, 302);
         return;
     } catch (e) {
-        const template = await env.__STATIC_CONTENT.get('paste.mustache');
         res.headers.set("Content-Type", "text/html");
-        res.body = Mustache.render(template!, { paste: result.content, id });
+        res.body = Mustache.render(await asset.text()!, { paste: result.content, id });
         return;
     }
 })
@@ -65,19 +89,20 @@ export default {
         env: Env,
         ctx: ExecutionContext
     ): Promise<Response> {
+        const raw = {
+            request,
+            waitUntil: ctx.waitUntil.bind(ctx),
+        };
         try {
             return await getAssetFromKV(
-                {
-                    request,
-                    waitUntil: ctx.waitUntil.bind(ctx),
-                },
+                raw,
                 {
                     ASSET_NAMESPACE: env.__STATIC_CONTENT,
                     ASSET_MANIFEST: assetManifest,
                 }
             );
         } catch (err) {
-            return router.handle(env, request);
+            return router.handle(env, request, { raw });
         }
     },
 };

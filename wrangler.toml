@@ -5,7 +5,7 @@ route = "waf.rs/*"
 node_compat = true
 
 kv_namespaces = [
-    { binding = "wafrs", id = "ae0ed606ec2544859474a2fe6e97aebc", preview_id = "46760d7b9a454390a6080f2eabdd8966" }
+    { binding = "wafrs", id = "ae0ed606ec2544859474a2fe6e97aebc", preview_id = "ae0ed606ec2544859474a2fe6e97aebc" }
 ]
 
 [site]

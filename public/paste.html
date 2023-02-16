@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%; height: 100%;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/output.css" rel="stylesheet">
+    <title itemprop="name">Wafrs - {{id}}</title>
+
+    <meta property="og:type" content="object">
+    <meta property="og:title" content="Wafrs">
+    <meta property="og:image" content="/favicon.ico">
+
+    <meta name="twitter:title" content="Wafrs">
+    <meta itemprop="name" content="Wafrs">
+    <meta name="application-name" content="Wafrs">
+    <meta property="og:site_name" content="Wafrs">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta property="og:locale" content="en">
+    <meta name="language" content="en">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@Spherical_Kat">
+    <meta name="twitter:image" content="/favicon.ico">
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="keywords"
+        content="paste,pastebin,url,urlshortener,url-shortener,code,programming,bin,cat,kat,paste,share,save,login">
+    <meta name="coverage" content="Worldwide">
+    <meta name="distribution" content="Global">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-title" content="Wafrs">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-touch-fullscreen" content="yes">
+
+    <meta name="description" content={{paste}}>
+    <meta itemprop="description" content={{paste}}>
+    <meta property="og:description" content={{paste}}>
+    <meta name="twitter:description" content={{paste}}>
+
+    <meta name="url" content="https://waf.rs/{{id}}">
+    <meta name="twitter:url" content="https://waf.rs/{{id}}">
+    <meta property="og:url" content="https://waf.rs/{{id}}">
+</head>
+
+<body class="flex flex-col w-full h-full">
+    <header class="flex w-full justify-between items-center px-6 py-3 bg-[#21252b]">
+        <div class="flex font-mono text-xl">
+            <span class="text-green-300">Waf</span>
+            <span class="text-[#cccccc]">rs</span>
+        </div>
+    </header>
+    <div class="flex relative flex-col w-full h-full overflow-hidden">
+        <code class="w-full h-full px-6 py-3 bg-[#282c34] text-[#cccccc]">{{paste}}</code>
+    </div>
+</body>
+
+</html>

@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@tsndr/cloudflare-worker-router": "^2.3.2",
-    "mustache": "^4.2.0"
+    "mustache": "^4.2.0",
+    "query-string": "^8.1.0"
   }
 }
