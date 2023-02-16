@@ -170,3 +170,4 @@ dist
 
 .dev.vars
 *.sqlite3
+migrations
