@@ -44,17 +44,6 @@
     <meta name="url" content="https://waf.rs/{{id}}">
     <meta name="twitter:url" content="https://waf.rs/{{id}}">
     <meta property="og:url" content="https://waf.rs/{{id}}">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            hljs.highlightAll()
-        })
-    </script>
-
-    <link rel="stylesheet" href="/prism.css">
-    <script src="/prism.js"></script>
 </head>
 
 <body class="flex flex-col w-full h-full">
@@ -67,8 +56,9 @@
         </div>
     </header>
     <div class="flex relative flex-col w-full h-full overflow-hidden">
-        <pre
-            class="w-full h-full px-6 py-3 overflow-y-auto bg-transparent"><code class="break-word text-[#cccccc]" style="white-space: pre;">{{paste}}</code></pre>
+        <div style="background-image: linear-gradient(to bottom, #2a2139 50%, #34294f);white-space: pre;text-shadow: 0 0 2px #393a33, 0 0 8px #f39f0575, 0 0 2px #f39f0575;"
+            class="break-word w-full h-full px-6 py-3 text-[#f4eee4]"><span>Your shortened URL is: </span><a class="text-[#f92aad]" href="{{url}}">{{url}}</a><span>, which points to <a class="text-[#f92aad]" href="{{paste}}">{{paste}}</a>.</span>
+        </div>
     </div>
     <footer>
         <div class="text-[#f4eee4] font-mono flex px-4 py-1 text-xs sm:text-base justify-between text-amber"
