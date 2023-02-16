@@ -44,17 +44,31 @@
     <meta name="url" content="https://waf.rs/{{id}}">
     <meta name="twitter:url" content="https://waf.rs/{{id}}">
     <meta property="og:url" content="https://waf.rs/{{id}}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            hljs.highlightAll()
+        })
+    </script>
+
+    <link rel="stylesheet" href="prism.css">
+    <script src="/prism.js"></script>
 </head>
 
 <body class="flex flex-col w-full h-full">
-    <header class="flex w-full justify-between items-center px-6 py-3 bg-[#21252b]">
+    <header class="flex w-full justify-between items-center px-6 py-3 bg-transparent" style="background: #2a2139;">
         <div class="flex font-mono text-xl">
-            <span class="text-green-300">Waf</span>
-            <span class="text-[#cccccc]">rs</span>
+            <a href="/" class="flex"><span class="text-[#f92aad]"
+                    style="text-shadow: 0 0 2px #393a33, 0 0 8px #f39f0575, 0 0 2px #f39f0575;">Waf</span>
+                <span class="text-[#f4eee4]"
+                    style="text-shadow: 0 0 2px #393a33, 0 0 8px #f39f0575, 0 0 2px #f39f0575;">rs</span></a>
         </div>
     </header>
     <div class="flex relative flex-col w-full h-full overflow-hidden">
-        <code class="break-word w-full h-full px-6 py-3 overflow-y-auto bg-[#282c34] text-[#cccccc]" style="white-space: pre;">{{paste}}</code>
+        <pre
+            class="w-full h-full px-6 py-3 overflow-y-auto bg-transparent"><code class="break-word text-[#cccccc]" style="white-space: pre;">{{paste}}</code></pre>
     </div>
 </body>
 
