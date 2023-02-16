@@ -24,7 +24,7 @@ const customKeyModifier = (id: string, template: string) => (request: Request) =
 
 router.post('/', async ({ req, res, env }) => {
     const { content } = queryString.parse(req.body);
-    const id = PhoneticKeyGenerator.createKey(12);
+    const id = PhoneticKeyGenerator.createKey(8);
     const resp = await env.DB.prepare("INSERT INTO pastes(id, content) VALUES(?, ?)")
         .bind(id, content)
         .run();
