@@ -18,7 +18,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@tsndr/cloudflare-worker-router": "^2.3.2",
+    "@tsndr/cloudflare-worker-router": "^3.0.0",
     "mustache": "^4.2.0",
     "query-string": "^8.1.0"
   }
